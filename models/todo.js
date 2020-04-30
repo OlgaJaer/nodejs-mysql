@@ -15,10 +15,6 @@ done: {
 title: {
     type: Sequelize.STRING,
     allowNull: false
-},
-date: {
-    type: Sequelize.DATE,
-    allowNull: false
 }
 });
 
