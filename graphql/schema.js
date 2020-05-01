@@ -12,6 +12,11 @@ type TestType {
     users: [User!]!
 }
 
+input UserInput {
+    name: String!
+    email: String!
+}
+
 type Todo {
     id: ID!
     title: String!
@@ -27,12 +32,12 @@ type Query {
     getTodos: [Todo!]!
 }
 
-input UserInput {
-    name: String!
-    email: String!
+input TodoInput {
+    title: String!
 }
 
 type Mutation {
     addTestUser(user: UserInput!): User!
+    createTodo(todo: TodoInput!): Todo!
 }
 `);
