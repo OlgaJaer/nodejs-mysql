@@ -9,14 +9,26 @@ new Vue({
     };
   },
   created() {
-    fetch("/api/todo", {
-      method: "get",
+    const query = `
+      query {
+        getTodos{
+          id title done createdAt updatedAt
+      
+        }
+      }
+    `;
+    fetch("/graphql", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify({ query: query }), // = {query}
     })
-      .then((res) => res.json())
-      .then((todos) => {
-        this.todos = todos;
-      })
-      .catch((e) => console.log(e));
+    .then(res => res.json())
+    .then( res => {
+      this.todos = res.data.getTodos
+    })
   },
   methods: {
     addTodo() {
@@ -76,7 +88,7 @@ new Vue({
           (options.second = "2-digit");
       }
 
-      return new Intl.DateTimeFormat("ru-RU", options).format(new Date(value));
+      return new Intl.DateTimeFormat("ru-RU", options).format(new Date(+value)); 
     },
   },
 });
