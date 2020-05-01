@@ -39,5 +39,6 @@ input TodoInput {
 type Mutation {
     addTestUser(user: UserInput!): User!
     createTodo(todo: TodoInput!): Todo!
+    completeTodo(id: ID!): Todo!
 }
 `);
